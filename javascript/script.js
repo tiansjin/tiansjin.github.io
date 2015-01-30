@@ -1,24 +1,4 @@
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '399183716908483',
-      xfbml      : true,
-      version    : 'v2.2'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-
-
-
-
-    // This is called with the results from from FB.getLoginStatus().
+  // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -50,6 +30,15 @@
     });
   }
 
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '{your-app-id}',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.1' // use version 2.1
+  });
+
   // Now that we've initialized the JavaScript SDK, we call 
   // FB.getLoginStatus().  This function gets the state of the
   // person visiting this page and can return one of three states to
@@ -65,6 +54,18 @@
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
   });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
 
   function fetchPhotos() {
     console.log('Fetching Photos.... ');
