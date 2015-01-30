@@ -77,7 +77,7 @@
         var tags = photo.tags.data;
         var names = "";
         if (tags.length > 0){
-          names = tags[0];
+          names = tags[0].name;
         }
         for (j = 1; j < tags.length; j++){
           names = names + ", " + tags[j].name;
