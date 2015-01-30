@@ -69,14 +69,17 @@
 
   function fetchPhotos() {
     console.log('Fetching Photos.... ');
-    FB.api('/me/photos', function(response) {
+    FB.api('/me/photos',{'limit':100}, function(response) {
       
       var data = response.data;
       for (i = 0; i < data.length; i++){
         var photo = data[i];
         var tags = photo.tags.data;
         var names = "";
-        for (j = 0; j < tags.length; j++){
+        if (tags.length > 0){
+          names = tags[0];
+        }
+        for (j = 1; j < tags.length; j++){
           names = names + ", " + tags[j].name;
         }
         displayImage(photo.source, photo.width/2, photo.height/2, names);
