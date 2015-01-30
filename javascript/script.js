@@ -66,8 +66,6 @@
     statusChangeCallback(response);
   });
 
-  };
-
   function fetchPhotos() {
     console.log('Fetching Photos.... ');
     FB.api('/me/photos', function(response) {
