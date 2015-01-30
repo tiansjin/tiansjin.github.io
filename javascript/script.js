@@ -71,5 +71,21 @@
     console.log('Fetching Photos.... ');
     FB.api('/me/photos', function(response) {
       console.log(response);
+      var data = response.data;
+
     });
+  }
+
+  function displayImage(src, width, height, caption){
+    var figure = document.createElement("FIGURE");
+    var image = doument.createElement("img");
+    img.src = src;
+    img.width = width;
+    img.height = height;
+    img.alt = caption;
+    figure.appendChild(img);
+    var caption = document.createElement("FIGCAPTION");
+    caption.text = caption;
+    figure.appendChild(caption);
+    document.body.appendChild(figure);
   }
