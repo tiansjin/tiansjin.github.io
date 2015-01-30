@@ -78,6 +78,7 @@
         for (var person : tags){
           names = names + person.name + " ";
         }
+        console.log(names);
         displayImage(photo.source, photo.width, photo.height, names);
       }
       console.log(data);
