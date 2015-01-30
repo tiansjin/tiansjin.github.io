@@ -77,7 +77,7 @@
         var tags = photo.tags.data;
         var names = "";
         for (j = 0; j < tags.length; j++){
-          names = names + tags[j].name + " ";
+          names = names + ", " + tags[j].name;
         }
         console.log(names);
         displayImage(photo.source, photo.width, photo.height, names);
@@ -89,7 +89,7 @@
 
   function displayImage(src, width, height, caption){
     var figure = document.createElement("FIGURE");
-    var image = document.createElement("img");
+    var img = document.createElement("img");
     img.src = src;
     img.width = width;
     img.height = height;
