@@ -79,10 +79,8 @@
         for (j = 0; j < tags.length; j++){
           names = names + ", " + tags[j].name;
         }
-        console.log(names);
-        displayImage(photo.source, photo.width, photo.height, names);
+        displayImage(photo.source, photo.width/2, photo.height/2, names);
       }
-      console.log(data);
 
     });
   }
@@ -95,8 +93,8 @@
     img.height = height;
     img.alt = caption;
     figure.appendChild(img);
-    var caption = document.createElement("FIGCAPTION");
-    caption.text = caption;
-    figure.appendChild(caption);
+    var cap = document.createElement("FIGCAPTION");
+    cap.innerHTML = caption;
+    figure.appendChild(cap);
     document.body.getElementsByTagName('section')[0].appendChild(figure);
   }
