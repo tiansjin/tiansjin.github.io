@@ -72,11 +72,12 @@
     FB.api('/me/photos', function(response) {
       
       var data = response.data;
-      for (var photo in data){
+      for (i = 0; i < data.length; i++){
+        var photo = data[i];
         var tags = photo.tags.data;
         var names = "";
-        for (var person in tags){
-          names = names + person.name + " ";
+        for (j = 0; j < tags.length; j++){
+          names = names + tags[j].name + " ";
         }
         console.log(names);
         displayImage(photo.source, photo.width, photo.height, names);
@@ -88,7 +89,7 @@
 
   function displayImage(src, width, height, caption){
     var figure = document.createElement("FIGURE");
-    var image = doument.createElement("img");
+    var image = document.createElement("img");
     img.src = src;
     img.width = width;
     img.height = height;
