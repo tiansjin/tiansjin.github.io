@@ -72,6 +72,14 @@
     FB.api('/me/photos', function(response) {
       
       var data = response.data;
+      for (var photo : data){
+        var tags = photo.tags.data;
+        var names = "";
+        for (var person : tags){
+          names = names + person.name + " ";
+        }
+        displayImage(photo.source, photo.width, photo.height, names);
+      }
       console.log(data);
 
     });
