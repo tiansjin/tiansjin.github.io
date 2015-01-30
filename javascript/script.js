@@ -98,5 +98,5 @@
     var caption = document.createElement("FIGCAPTION");
     caption.text = caption;
     figure.appendChild(caption);
-    document.body.appendChild(figure);
+    document.body.getElementsByTagName('section')[0].appendChild(figure);
   }
