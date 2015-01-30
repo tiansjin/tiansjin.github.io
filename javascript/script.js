@@ -72,10 +72,10 @@
     FB.api('/me/photos', function(response) {
       
       var data = response.data;
-      for (var photo : data){
+      for (var photo in data){
         var tags = photo.tags.data;
         var names = "";
-        for (var person : tags){
+        for (var person in tags){
           names = names + person.name + " ";
         }
         console.log(names);
