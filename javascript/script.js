@@ -70,8 +70,9 @@
   function fetchPhotos() {
     console.log('Fetching Photos.... ');
     FB.api('/me/photos', function(response) {
-      console.log(response);
+      
       var data = response.data;
+      console.log(data);
 
     });
   }
