@@ -96,7 +96,7 @@
       for (i = 0; i < data.length; i++){
         var photo = data[i];
         var names = "";
-        if (photo.hasOwnProperty('data')){
+        if (photo.hasOwnProperty('tags')){
           var tags = photo.tags.data;
           if (tags.length > 0){
             names = tags[0].name;
