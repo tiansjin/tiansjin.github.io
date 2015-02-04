@@ -71,8 +71,8 @@
   }(document, 'script', 'facebook-jssdk'));
 
   function showButtons(){
-  	document.getElementById("uploaded").style.display="block";
-  	document.getElementById("tagged").style.display="block";
+  	document.getElementById("uploaded").style.display="inline";
+  	document.getElementById("tagged").style.display="inline";
   }
 
   function hideButtons(){
