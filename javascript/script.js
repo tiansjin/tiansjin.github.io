@@ -39,6 +39,10 @@
     version    : 'v2.1' // use version 2.1
   });
 
+  FB.logout(function(){
+
+  })
+
   // Now that we've initialized the JavaScript SDK, we call 
   // FB.getLoginStatus().  This function gets the state of the
   // person visiting this page and can return one of three states to
@@ -77,7 +81,13 @@
   }
 
 
+  function clearPhotos(){
+  	var section = document.body.getElementsByTagName('section')[1];
+  	while (section.firstChild) section.removeChild(section.firstChild);
+  }
+
   function fetchUploaded(){
+  	clearPhotos();
     console.log('Fetching Photos.... ');
     FB.api('/me/photos/uploaded',{'limit':100}, function(response) {
       
@@ -99,6 +109,7 @@
   }
 
   function fetchPhotos() {
+  	clearPhotos();
     console.log('Fetching Photos.... ');
     FB.api('/me/photos',{'limit':100}, function(response) {
       
@@ -130,5 +141,5 @@
     var cap = document.createElement("FIGCAPTION");
     cap.innerHTML = caption;
     figure.appendChild(cap);
-    document.body.getElementsByTagName('section')[0].appendChild(figure);
+    document.body.getElementsByTagName('section')[1].appendChild(figure);
   }
