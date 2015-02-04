@@ -8,7 +8,7 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      fetchPhotos();
+      showButtons();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -66,6 +66,37 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
+  function showButtons(){
+  	document.getElementById("uploaded").style.display="block";
+  	document.getElementById("tagged").style.display="block";
+  }
+
+  function hideButtons(){
+  	document.getElementById("uploaded").style.display="none";
+  	document.getElementById("tagged").style.display="none";
+  }
+
+
+  function fetchUploaded(){
+    console.log('Fetching Photos.... ');
+    FB.api('/me/photos/uploaded',{'limit':100}, function(response) {
+      
+      var data = response.data;
+      for (i = 0; i < data.length; i++){
+        var photo = data[i];
+        var tags = photo.tags.data;
+        var names = "";
+        if (tags.length > 0){
+          names = tags[0].name;
+        }
+        for (j = 1; j < tags.length; j++){
+          names = names + ", " + tags[j].name;
+        }
+        displayImage(photo.source, photo.width/2, photo.height/2, names);
+      }
+
+    });
+  }
 
   function fetchPhotos() {
     console.log('Fetching Photos.... ');
