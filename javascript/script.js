@@ -83,24 +83,27 @@
 
   function clearPhotos(){
   	var section = document.body.getElementsByTagName('section')[1];
-  	while (section.firstChild) section.removeChild(section.firstChild);
+  	while (section.firstChild) {
+  		console.log("removing child");
+  		section.removeChild(section.firstChild);
+  	}
   }
 
   function fetchUploaded(){
-  	clearPhotos();
-    console.log('Fetching Photos.... ');
+    console.log('Fetching Uploaded Photos.... ');
     FB.api('/me/photos/uploaded',{'limit':100}, function(response) {
-      
       var data = response.data;
       for (i = 0; i < data.length; i++){
         var photo = data[i];
-        var tags = photo.tags.data;
         var names = "";
-        if (tags.length > 0){
-          names = tags[0].name;
-        }
-        for (j = 1; j < tags.length; j++){
-          names = names + ", " + tags[j].name;
+        if (photo.hasOwnProperty('data')){
+          var tags = photo.tags.data;
+          if (tags.length > 0){
+            names = tags[0].name;
+          }
+          for (j = 1; j < tags.length; j++){
+            names = names + ", " + tags[j].name;
+          }
         }
         displayImage(photo.source, photo.width/2, photo.height/2, names);
       }
