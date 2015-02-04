@@ -84,12 +84,12 @@
   function clearPhotos(){
   	var section = document.body.getElementsByTagName('section')[1];
   	while (section.firstChild) {
-  		console.log("removing child");
   		section.removeChild(section.firstChild);
   	}
   }
 
   function fetchUploaded(){
+  	clearPhotos();
     console.log('Fetching Uploaded Photos.... ');
     FB.api('/me/photos/uploaded',{'limit':100}, function(response) {
       var data = response.data;
