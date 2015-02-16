@@ -95,8 +95,9 @@
     FB.api('/me/albums',{'limit':100}, function(response) {
       var data = response.data;
       for (i = 0; i < data.length; i++){
-        var id = data.id;
-        var name = data.name;
+        console.log
+        var id = data[i].id;
+        var name = data[i].name;
         var btn = document.createElement("BUTTON");
         var t = document.createTextNode(name);
         btn.appendChild(t);
@@ -107,7 +108,10 @@
   }
 
   function fetchAlbum(id){
-
+    string = '/me/'+id+'/photos'
+    FB.api(string,{'limit':100}, function(response) {
+      console.log(response);
+    });
   }
 
   function fetchUploaded(){
