@@ -108,6 +108,7 @@
   }
 
   function fetchAlbum(id){
+    clearPhotos();
     string = '/me/'+id+'/photos'
     FB.api(string,{'limit':100}, function(response) {
       console.log(response);
