@@ -90,25 +90,25 @@
   	}
   }
 
-  // function fetchAlbums(){
-  //   clearPhotos();
-  //   FB.api('/me/albums',{'limit':100}, function(response) {
-  //     var data = response.data;
-  //     for (i = 0; i < data.length; i++){
-  //       var id = data.id;
-  //       var name = data.name;
-  //       var btn = document.createElement("BUTTON");
-  //       var t = document.createTextNode(name);
-  //       btn.appendChild(t);
-  //       btn.onclick = fetchAlbum(id);
-  //       document.body.getElementsByTagName('section')[1].appendChild(btn);
-  //     }
-  //   }
-  // }
+  function fetchAlbums(){
+    clearPhotos();
+    FB.api('/me/albums',{'limit':100}, function(response) {
+      var data = response.data;
+      for (i = 0; i < data.length; i++){
+        var id = data.id;
+        var name = data.name;
+        var btn = document.createElement("BUTTON");
+        var t = document.createTextNode(name);
+        btn.appendChild(t);
+        btn.onclick = fetchAlbum(id);
+        document.body.getElementsByTagName('section')[1].appendChild(btn);
+      }
+    });
+  }
 
-  // function fetchAlbum(id){
+  function fetchAlbum(id){
 
-  // }
+  }
 
   function fetchUploaded(){
   	clearPhotos();
