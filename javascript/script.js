@@ -70,6 +70,11 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
+
+
+
+
+
   function showButtons(){
   	document.getElementById("uploaded").style.display="inline";
   	document.getElementById("tagged").style.display="inline";
@@ -90,6 +95,7 @@
   	}
   }
 
+  // Go through the data array and display the photos
   function parseData(response){
     var data = response.data;
     for (i = 0; i < data.length; i++){
@@ -151,6 +157,7 @@
     });
   }
 
+  // Given photo info from Facebook, display it
   function displayImage(src, width, height, caption){
     var figure = document.createElement("FIGURE");
     var img = document.createElement("img");
