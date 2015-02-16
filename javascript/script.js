@@ -73,11 +73,13 @@
   function showButtons(){
   	document.getElementById("uploaded").style.display="inline";
   	document.getElementById("tagged").style.display="inline";
+    document.getElementById("albums").style.display="inline";
   }
 
   function hideButtons(){
   	document.getElementById("uploaded").style.display="none";
   	document.getElementById("tagged").style.display="none";
+    document.getElementById("albums").style.display="none";
   }
 
 
@@ -86,6 +88,26 @@
   	while (section.firstChild) {
   		section.removeChild(section.firstChild);
   	}
+  }
+
+  function fetchAlbums(){
+    clearPhotos();
+    FB.api('/me/albums',{'limit':100}, function(response) {
+      var data = response.data;
+      for (i = 0; i < data.length; i++){
+        var id = data.id;
+        var name = data.name;
+        var btn = document.createElement("BUTTON");
+        var t = document.createTextNode(name);
+        btn.appendChild(t);
+        btn.onclick = fetchAlbum(id);
+        document.body.getElementsByTagName('section')[1].appendChild(btn);
+      }
+    }
+  }
+
+  function fetchAlbum(id){
+
   }
 
   function fetchUploaded(){
