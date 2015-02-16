@@ -90,28 +90,46 @@
   	}
   }
 
+  function parseData(response){
+    var data = response.data;
+    for (i = 0; i < data.length; i++){
+      var photo = data[i];
+      var names = "";
+      if (photo.hasOwnProperty('tags')){
+        var tags = photo.tags.data;
+        if (tags.length > 0){
+          names = tags[0].name;
+        }
+        for (j = 1; j < tags.length; j++){
+          names = names + ", " + tags[j].name;
+        }
+      }
+      displayImage(photo.source, photo.width/2, photo.height/2, names);
+    }
+  }
+
   function fetchAlbums(){
     clearPhotos();
     FB.api('/me/albums',{'limit':100}, function(response) {
       var data = response.data;
       for (i = 0; i < data.length; i++){
-        console.log
         var id = data[i].id;
         var name = data[i].name;
         var btn = document.createElement("BUTTON");
         var t = document.createTextNode(name);
+        btn.className = id;
         btn.appendChild(t);
-        btn.onclick = fetchAlbum(id);
+        btn.addEventListener('click', fetchAlbum,false);
         document.body.getElementsByTagName('section')[1].appendChild(btn);
       }
     });
   }
 
-  function fetchAlbum(id){
+  function fetchAlbum(element){
     clearPhotos();
-    string = '/me/'+id+'/photos'
+    string = element.srcElement.className+'/photos'
     FB.api(string,{'limit':100}, function(response) {
-      console.log(response);
+      parseData(response);
     });
   }
 
@@ -119,22 +137,7 @@
   	clearPhotos();
     console.log('Fetching Uploaded Photos.... ');
     FB.api('/me/photos/uploaded',{'limit':100}, function(response) {
-      var data = response.data;
-      for (i = 0; i < data.length; i++){
-        var photo = data[i];
-        var names = "";
-        if (photo.hasOwnProperty('tags')){
-          var tags = photo.tags.data;
-          if (tags.length > 0){
-            names = tags[0].name;
-          }
-          for (j = 1; j < tags.length; j++){
-            names = names + ", " + tags[j].name;
-          }
-        }
-        displayImage(photo.source, photo.width/2, photo.height/2, names);
-      }
-
+      parseData(response);
     });
   }
 
@@ -143,19 +146,7 @@
     console.log('Fetching Photos.... ');
     FB.api('/me/photos',{'limit':100}, function(response) {
       
-      var data = response.data;
-      for (i = 0; i < data.length; i++){
-        var photo = data[i];
-        var tags = photo.tags.data;
-        var names = "";
-        if (tags.length > 0){
-          names = tags[0].name;
-        }
-        for (j = 1; j < tags.length; j++){
-          names = names + ", " + tags[j].name;
-        }
-        displayImage(photo.source, photo.width/2, photo.height/2, names);
-      }
+      parseData(response);
 
     });
   }
